@@ -71,7 +71,15 @@ RESULT:
 199. Winnie the Pooh (ID=199) (ISBN=692-58-95930-93-6) (Price=$49) (StockAmount=185) | [Author (ID=117) (Name=A. A Milne)]
 200. A Doll's House (ID=200) (ISBN=326-19-51292-98-1) (Price=$29) (StockAmount=177) | [Author (ID=142) (Name=Henrik Ibsen)]
 ```
+list (timeout exceed)
+```
+$ ./bin/library list                       
+2022/03/14 22:05:34 there are already 147 authors record in DB
+2022/03/14 22:05:34 there are already 200 books record in DB
 
+ERROR:
+        list operation takes too much time! please increase timeout configuration, context deadline exceeded
+```
 ### search
 
 search (not found)
@@ -122,15 +130,6 @@ RESULT:
 1. The Hobbit (ID=180) (ISBN=487-56-86624-25-9) (Price=$98) (StockAmount=32) | [Author (ID=14) (Name=J. R. R. Tolkien)]
 ```
 
-search (timeout exceed)
-```
-$ ./bin/library list                       
-2022/03/14 22:05:34 there are already 147 authors record in DB
-2022/03/14 22:05:34 there are already 200 books record in DB
-
-ERROR:
-        list operation takes too much time! please increase timeout configuration, context deadline exceeded
-```
 
 ### buy
 successful buy
