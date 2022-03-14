@@ -10,7 +10,7 @@ $ go build -o bin/library cmd/hw3/main.go
 ```
 
 ## usage
-```shell
+```
 ### USAGE ###
 
 Commands: 
