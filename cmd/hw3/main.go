@@ -150,7 +150,11 @@ func buyOperation(args []string) {
 
 	item, err := library.Buy(ctx, id, amount)
 	if err != nil {
-		fmt.Printf("%serror occured during buy operation, \n\t - %s\n", ErrorPrefix, err.Error())
+		if errors.Is(err, context.DeadlineExceeded) {
+			fmt.Printf("%sbuy operation takes too much time! please increase timeout configuration, %v\n", ErrorPrefix, err)
+		} else {
+			fmt.Printf("%serror occured during buy operation, \n\t - %s\n", ErrorPrefix, err.Error())
+		}
 		return
 	}
 	fmt.Printf("%sYou bought %d from Book[ID=%d] successfully! There are %d of this book left\n",
@@ -179,7 +183,11 @@ func deleteOperation(args []string) {
 
 	_, err = library.Delete(ctx, id)
 	if err != nil {
-		fmt.Printf("%serror occured during delete operation,\n\t - %s\n", ErrorPrefix, err.Error())
+		if errors.Is(err, context.DeadlineExceeded) {
+			fmt.Printf("%sdelete operation takes too much time! please increase timeout configuration, %v\n", ErrorPrefix, err)
+		} else {
+			fmt.Printf("%serror occured during delete operation, \n\t - %s\n", ErrorPrefix, err.Error())
+		}
 		return
 	}
 	fmt.Printf("%sbook[ID=%d] is successfully deleted\n", SuccessPrefix, id)
