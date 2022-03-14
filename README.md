@@ -52,7 +52,7 @@ There should be two files (`.env` or `.env.local`) at root directory of the proj
 ## example usages
 
 ### list
-```shell
+```
 $ ./bin/library list 
 
 RESULT:
@@ -75,7 +75,7 @@ RESULT:
 ### search
 
 search (not found)
-```shell
+```
 $ ./bin/library search gfsdfjksdhfjksdfsdfjsd
 2022/03/14 21:18:56 there are already 147 authors record in DB
 2022/03/14 21:18:56 there are already 200 books record in DB
@@ -86,7 +86,7 @@ ERROR:
 
 
 search by book name
-```shell
+```
 $ ./bin/library search great
 2022/03/14 21:18:04 there are already 147 authors record in DB
 2022/03/14 21:18:04 there are already 200 books record in DB
@@ -98,7 +98,7 @@ RESULT:
 ```
 
 search by author
-```shell
+```
 $ ./bin/library search james                 
 2022/03/14 21:19:30 there are already 147 authors record in DB
 2022/03/14 21:19:30 there are already 200 books record in DB
@@ -112,7 +112,7 @@ RESULT:
 ```
 
 search by ISBN
-```shell
+```
 $ ./bin/library search 487-56-86624-25-9     
 2022/03/14 21:20:12 there are already 147 authors record in DB
 2022/03/14 21:20:12 there are already 200 books record in DB
@@ -122,9 +122,19 @@ RESULT:
 1. The Hobbit (ID=180) (ISBN=487-56-86624-25-9) (Price=$98) (StockAmount=32) | [Author (ID=14) (Name=J. R. R. Tolkien)]
 ```
 
+search (timeout exceed)
+```
+$ ./bin/library list                       
+2022/03/14 22:05:34 there are already 147 authors record in DB
+2022/03/14 22:05:34 there are already 200 books record in DB
+
+ERROR:
+        list operation takes too much time! please increase timeout configuration, context deadline exceeded
+```
+
 ### buy
 successful buy
-```shell
+```
 $ ./bin/library buy 1 10                
 2022/03/14 21:21:45 there are already 147 authors record in DB
 2022/03/14 21:21:45 there are already 200 books record in DB
@@ -133,7 +143,7 @@ RESULT:
         You bought 10 from Book[ID=1] successfully! There are 123 of this book left
 ```
 failed buy (exceed stock amount)
-```shell
+```
 $ ./bin/library buy 1 124
 2022/03/14 21:22:07 there are already 147 authors record in DB
 2022/03/14 21:22:07 there are already 200 books record in DB
@@ -143,7 +153,7 @@ ERROR:
          - there is not enough stock to sell this book in demanded amount
 ```
 failed buy (try to buy non-exist book)
-```shell
+```
 $ ./bin/library buy 599 1  
 2022/03/14 21:22:28 there are already 147 authors record in DB
 2022/03/14 21:22:28 there are already 200 books record in DB
@@ -155,7 +165,7 @@ ERROR:
 ### delete
 
 successful delete
-```shell
+```
 $ ./bin/library delete 1  
 2022/03/14 21:23:40 there are already 147 authors record in DB
 2022/03/14 21:23:40 there are already 200 books record in DB
@@ -165,7 +175,7 @@ RESULT:
 ```
 
 failed delete (already deleted)
-```shell
+```
 $ ./bin/library delete 1
 2022/03/14 21:23:54 there are already 147 authors record in DB
 2022/03/14 21:23:54 there are already 200 books record in DB
@@ -176,7 +186,7 @@ ERROR:
 ```
 
 failed delete (non exist book)
-```shell
+```
 $ ./bin/library delete 1000
 2022/03/14 21:24:08 there are already 147 authors record in DB
 2022/03/14 21:24:08 there are already 200 books record in DB
@@ -186,7 +196,7 @@ ERROR:
          - record not found
 ```
 ### clear
-```shell
+```
 $ ./bin/library clear                    
 
 RESULT:
